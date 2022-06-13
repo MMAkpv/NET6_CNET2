@@ -6,6 +6,7 @@ Console.WriteLine("Hello, World!");
 
 int[] numbers = { 11, 2, 13, 44, -5, 6, 127, -99, 0, 256 };
 
+#region LINQ
 
 //WHERE - filtrace
 //vetsi nez 0
@@ -59,11 +60,21 @@ int[] numbers = { 11, 2, 13, 44, -5, 6, 127, -99, 0, 256 };
 //Console.WriteLine(result);
 
 //pocet lichych
-Console.WriteLine(numbers.Count(n => n % 2 != 0 && n != 0));
+//Console.WriteLine(numbers.Count(n => n % 2 != 0 && n != 0));
 
 //pocet sudych
-Console.WriteLine(numbers.Count(n => n % 2 == 0 || n == 0));
+//Console.WriteLine(numbers.Count(n => n % 2 == 0 || n == 0));
 
+//vypsat cisla slovy
+var numbers2 = new[] { 5, 4, 1, 3, 9, 8, 6, 7, 2, 0 };
+var strings = new[] { "zero", "one", "two", "three", "four",
+    "five", "six", "seven", "eight", "nine" };
+
+var l = numbers2.Select(n => strings[n]).ToArray();
+Console.WriteLine(String.Join(", ", l));
+
+
+#endregion
 
 static void NewMethod()
 {
