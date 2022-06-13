@@ -1,19 +1,24 @@
-﻿using Model;
+﻿using Data;
+using Model;
 
 Console.WriteLine("Hello, World!");
 
-//inicializator - nahrada využití konstruktoru
-FAResult fAResult = new FAResult()
+var booksdir = @"C:\Users\PC\source\repos\CNET2\Books";
+
+var files = Directory.EnumerateFiles(booksdir, "*.txt");
+
+foreach (var file in files)
 {
-    Source = "file",
-    SourceType = SourceType.FILE
-};
+    
+    var result = FreqAnalysis.FreqAnalysisFromFile(file);
 
-//fAResult.Source = "file";
-//fAResult.SourceType = SourceType.FILE;
+    var fileInfo = new FileInfo(file);
+    Console.WriteLine(fileInfo.Name);
 
-//Console.WriteLine(fAResult);
+    var v = result.OrderByDescending(x => x.Value).Take(10);
 
-//fAResult.Words = new Dictionary<string, int>();
-
-Console.WriteLine(fAResult);
+    foreach (var item in v)
+    {
+        Console.WriteLine($"{item.Key}\t{item.Value}");
+    }
+}
