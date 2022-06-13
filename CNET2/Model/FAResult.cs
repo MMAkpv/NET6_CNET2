@@ -5,7 +5,16 @@
     /// </summary>
     public class FAResult
     {
-        
+        // konstruktor
+        //public FAResult(string source, SourceType sourceType)
+        //{
+        //    Source = source;
+        //    SourceType = sourceType;
+        //    Words = new Dictionary<string, int>();
+        //}
+
+
+
 
         /// <summary>
         /// Zdroj textu
@@ -17,8 +26,10 @@
         /// <summary>
         /// Výsledná frekvenční analýza slov
         /// </summary>
-        public Dictionary<string, int> Words { get; set; }
+        public Dictionary<string, int> Words { get; set; } = new Dictionary<string, int>();
 
+
+        //zkracene public override string ToString() =>  return $"{Source} {Words?.Count}";  
         public override string ToString()
         {
                 return $"{Source} {Words?.Count}";   
