@@ -17,7 +17,7 @@
         /// <summary>
         /// Zdroj textu
         /// </summary>
-        public string Source { get; set; }
+        public string? Source { get; set; }
 
         public SourceType SourceType { get; set; }
 
