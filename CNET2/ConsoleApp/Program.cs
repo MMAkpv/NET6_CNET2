@@ -51,8 +51,8 @@ int[] numbers = { 11, 2, 13, 44, -5, 6, 127, -99, 0, 256 };
 Console.WriteLine(numbers.Count(n => n > 0));
 
 //ignorovat max a min cislo, ze zbytku pocitat prumer
-var max = numbers.Max();
-var min = numbers.Min();
+
+var v = (numbers.Sum() - numbers.Max() - numbers.Min()) +0.0/ numbers.Count() - 2;
 
 static void NewMethod()
 {
