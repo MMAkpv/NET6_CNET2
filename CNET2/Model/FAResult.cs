@@ -14,8 +14,6 @@
         //}
 
 
-
-
         /// <summary>
         /// Zdroj textu
         /// </summary>
@@ -34,8 +32,6 @@
         {
                 return $"{Source} {Words?.Count}";   
         }
-
-
 
     }
 

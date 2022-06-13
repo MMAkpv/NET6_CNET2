@@ -15,10 +15,12 @@ foreach (var file in files)
     var fileInfo = new FileInfo(file);
     Console.WriteLine(fileInfo.Name);
 
-    var v = result.OrderByDescending(x => x.Value).Take(10);
+    var orderedTop10 = result.Words.OrderByDescending(x => x.Value).Take(10);
 
-    foreach (var item in v)
+    foreach (var item in orderedTop10)
     {
         Console.WriteLine($"{item.Key}\t{item.Value}");
     }
+    
+    Console.WriteLine();
 }
