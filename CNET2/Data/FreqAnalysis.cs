@@ -4,15 +4,32 @@
     {
         public static Dictionary<string, int> FreqAnalysisFromString(string input)
         {
-            //throw new NotImplementedException();
-            Dictionary<string, int> result = new Dictionary<string, int>();
-            List<string> words = input.Split(new string[] { @",.;:()""[]" }, StringSplitOptions.None).ToList();
+            // moje reseni
+            //Dictionary<string, int> result = new Dictionary<string, int>();
+            //List<string> words = input.Split(new string[] { " ", ",", ".", ";", ":", Environment.NewLine }, StringSplitOptions.None).ToList();
 
-            foreach (var item in words)
+            //foreach (var item in words)
+            //{
+            //    if (!result.ContainsKey(item))
+            //    {
+            //        result.Add(item, words.Count(s => s == item));
+            //    }
+            //}
+
+            // rychlejsi reseni, podle prednasejiciho
+            var result = new Dictionary<string, int>();
+
+            var words = input.Split(new String[] { " ", ",", ".", ";", ":", Environment.NewLine}, StringSplitOptions.RemoveEmptyEntries);
+
+            foreach (var word in words)
             {
-                if (!result.ContainsKey(item))
+                if (result.ContainsKey(word))
                 {
-                    result.Add(item, words.Count(s => s == item));
+                    result[word] += 1;
+                }
+                else
+                {
+                    result.Add(word,1);
                 }
             }
 
