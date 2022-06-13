@@ -48,11 +48,22 @@ int[] numbers = { 11, 2, 13, 44, -5, 6, 127, -99, 0, 256 };
 
 //UKOLY
 //pocet kladnych cisel
-Console.WriteLine(numbers.Count(n => n > 0));
+//Console.WriteLine(numbers.Count(n => n > 0));
 
 //ignorovat max a min cislo, ze zbytku pocitat prumer
 
-var v = (numbers.Sum() - numbers.Max() - numbers.Min()) +0.0/ numbers.Count() - 2;
+//var v = (numbers.Sum() - numbers.Max() - numbers.Min()+0.0) / (numbers.Count() - 2);
+//Console.WriteLine(v);
+
+//var result = numbers.OrderBy(n => n).Skip(1).SkipLast(1).Average();
+//Console.WriteLine(result);
+
+//pocet lichych
+Console.WriteLine(numbers.Count(n => n % 2 != 0 && n != 0));
+
+//pocet sudych
+Console.WriteLine(numbers.Count(n => n % 2 == 0 || n == 0));
+
 
 static void NewMethod()
 {
