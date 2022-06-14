@@ -186,9 +186,26 @@ namespace WpfApp
             Mouse.OverrideCursor = null; //vratim se k normalni ikonce mysi
         }
 
-        private void btnNetAllWhen_Click(object sender, RoutedEventArgs e)
+        private async void btnNetAllWhen_Click(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            Mouse.OverrideCursor = Cursors.Wait; //pridam si cekaci kolecko misto mysi
+            Stopwatch s = Stopwatch.StartNew();
+            txbInfo.Text = "";
+
+            string url1 = "https://sezcnam.cz";
+            string url2 = "https://seznamzpravy.cz";
+            string url3 = "https://ictpro.cz";
+
+            var t1 = Task.Run(() => WebLoader.LoadUrl(url1));
+            var t2 = Task.Run(() => WebLoader.LoadUrl(url2));
+            var t3 = Task.Run(() => WebLoader.LoadUrl(url3));
+
+            int[] results = await Task.WhenAll(t1, t2, t3);
+            txbInfo.Text += $"Doběhly všechny tasky, web lengthy jsou {string.Join(", ", results)}";
+
+            s.Stop();
+            txbInfo.Text += ($"\nElapsed milliseconds:\t{s.ElapsedMilliseconds}");
+            Mouse.OverrideCursor = null; //vratim se k normalni ikonce mysi
         }
     }
 }
