@@ -8,7 +8,7 @@
         Title="Frekvenční analýza textu" Height="450" Width="800" Background="Brown">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="100"/>
+            <RowDefinition Height="50"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Button x:Name="btnLoadFiles" FontSize="16" Grid.Row="0" Content="Sekvenčně" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Click="btnLoadFiles_Click"/>

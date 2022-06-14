@@ -54,7 +54,6 @@ namespace WpfApp
             s.Stop();
             txbInfo.Text += $"\nElapsed milliseconds:\t{s.ElapsedMilliseconds}";
             Mouse.OverrideCursor = null; //vratim se k normalni ikonce mysi
-
         }
 
 
@@ -108,13 +107,11 @@ namespace WpfApp
 
                 message += "\n";
                 progress.Report(message);
-
             });
 
             s.Stop();
             progress.Report($"\nElapsed milliseconds:\t{s.ElapsedMilliseconds}");
             Mouse.OverrideCursor = null; //vratim se k normalni ikonce mysi
-
         }
 
         private void btnNetFirst_Click(object sender, RoutedEventArgs e)
@@ -191,8 +188,6 @@ namespace WpfApp
             Mouse.OverrideCursor = Cursors.Wait; //pridam si cekaci kolecko misto mysi
             Stopwatch s = Stopwatch.StartNew();
             txbInfo.Text = "";
-
-
 
             string url1 = "https://sezcnam.cz";
             string url2 = "https://seznamzpravy.cz";
