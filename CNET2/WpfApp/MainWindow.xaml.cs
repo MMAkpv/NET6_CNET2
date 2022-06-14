@@ -1,6 +1,7 @@
 ﻿using Data;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -31,6 +32,10 @@ namespace WpfApp
         {
             Mouse.OverrideCursor = Cursors.Wait;
 
+            Stopwatch s = Stopwatch.StartNew();
+            //s.Start();
+
+
             txbInfo.Text = "";
 
             var files = Directory.EnumerateFiles(@"C:\Users\PC\Desktop\bigfiles", "*.txt");
@@ -50,6 +55,8 @@ namespace WpfApp
                 txbInfo.Text += "\n";
             }
 
+            s.Stop();
+            txbInfo.Text += $"\nElapsed milliseconds:\t{s.ElapsedMilliseconds}";
             Mouse.OverrideCursor = null;
 
         }
