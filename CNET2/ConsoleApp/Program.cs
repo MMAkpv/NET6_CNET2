@@ -4,9 +4,11 @@ using System.Linq;
 
 Console.WriteLine("Hello, World!");
 
-int[] numbers = { 11, 2, 13, 44, -5, 6, 127, -99, 0, 256 };
+
 
 #region LINQ
+
+//int[] numbers = { 11, 2, 13, 44, -5, 6, 127, -99, 0, 256 };
 
 //WHERE - filtrace
 //vetsi nez 0
@@ -73,10 +75,29 @@ int[] numbers = { 11, 2, 13, 44, -5, 6, 127, -99, 0, 256 };
 //var l = numbers2.Select(n => strings[n]).ToArray();
 //Console.WriteLine(String.Join(", ", l));
 
-NewMethod();
 #endregion
 
+#region Interface
+Client client1 = new Client() { Name = "Petr" };
+Client client2 = new Client() { Name = "Alena" };
+VIPClient client3 = new VIPClient() { Name = "Monika", Status = "GOLD" };
 
+List<IGreetable> clients = new List<IGreetable>();
+clients.Add(client1);
+clients.Add(client2);
+clients.Add(client3);
+
+foreach (var client in clients)
+{
+    Console.WriteLine(client.SayHello());
+}
+
+static void GreetClient(IGreetable client)
+{
+    Console.WriteLine(client.SayHello());
+}
+
+#endregion
 
 
 static void NewMethod()
