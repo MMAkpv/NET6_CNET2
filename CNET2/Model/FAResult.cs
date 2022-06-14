@@ -1,4 +1,6 @@
-﻿namespace Model
+﻿using System.Linq;
+
+namespace Model
 {
     /// <summary>
     /// Výsledek frekvenční analýzy pro jeden zdroj (soubor nebo url)
@@ -26,6 +28,7 @@
         /// </summary>
         public Dictionary<string, int> Words { get; set; } = new Dictionary<string, int>();
 
+        public Dictionary<string, int> GetTop10() => (Dictionary<string, int>)Words.OrderByDescending(kv => kv.Value).Take(10);
 
         //zkracene public override string ToString() =>  return $"{Source} {Words?.Count}";  
         public override string ToString()

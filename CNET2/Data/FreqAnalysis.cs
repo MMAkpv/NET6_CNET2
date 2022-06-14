@@ -24,19 +24,21 @@ namespace Data
             //var words = input.Split(new String[] { " ", ",", ".", ";", ":", Environment.NewLine}, StringSplitOptions.RemoveEmptyEntries);
 
             //var words = input.Replace("."," ").Replace(","," ").Split(new String[] { " "}, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
-            var words = input.Replace(Environment.NewLine, " ")
-                .Replace(".", " ")
-                .Replace(",", " ")
-                .Replace(":"," ")
-                .Replace("("," ")
-                .Replace(")"," ")
-                .Replace("  ", " ")
-                .Replace("\"", " ")
-                .Replace("\'", " ")
-                .Replace("!", " ")
-                .Replace("?", " ")
-                .Replace("...", " ")
-                .Split(" ", (StringSplitOptions)3); //flagy z nápovědy 1 a 2, já chci obojí, tak to sečtu a dám 3
+            //var words = input.Replace(Environment.NewLine, " ")
+            //    .Replace(".", " ")
+            //    .Replace(",", " ")
+            //    .Replace(":"," ")
+            //    .Replace("("," ")
+            //    .Replace(")"," ")
+            //    .Replace("  ", " ")
+            //    .Replace("\"", " ")
+            //    .Replace("\'", " ")
+            //    .Replace("!", " ")
+            //    .Replace("?", " ")
+            //    .Replace("...", " ")
+            //    .Split(" ", (StringSplitOptions)3); //flagy z nápovědy 1 a 2, já chci obojí, tak to sečtu a dám 3
+
+            var words = input.Split(Environment.NewLine); //úprava pro nové soubory
 
             foreach (var word in words)
             {
@@ -55,8 +57,6 @@ namespace Data
 
         public static async Task<FAResult> FreqAnalysisFromUrl(string url)
         {
-            // todo get content from url
-            //throw new NotImplementedException();
         
             HttpClient httpClient = new HttpClient();
             var content = await httpClient.GetStringAsync(url);
@@ -74,8 +74,6 @@ namespace Data
 
         public static FAResult FreqAnalysisFromFile(string file)
         {
-            // todo get content from file
-            //throw new NotImplementedException();
 
             var content = File.ReadAllText(file);
             var dict = FreqAnalysisFromString(content);
