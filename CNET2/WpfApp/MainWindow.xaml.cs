@@ -232,10 +232,6 @@ namespace WpfApp
 
             var results = await Task.WhenAll(tasks);
 
-            //txbInfo.Text += $"Doběhly všechny tasky, web lengthy jsou {string.Join(", ", results)}";
-
-
-
             s.Stop();
             txbInfo.Text += ($"\nElapsed milliseconds:\t{s.ElapsedMilliseconds}");
             Mouse.OverrideCursor = null; //vratim se k normalni ikonce mysi
