@@ -30,12 +30,8 @@ namespace WpfApp
 
         private void btnLoadFiles_Click(object sender, RoutedEventArgs e)
         {
-            Mouse.OverrideCursor = Cursors.Wait;
-
+            Mouse.OverrideCursor = Cursors.Wait; //pridam si cekaci kolecko misto mysi
             Stopwatch s = Stopwatch.StartNew();
-            //s.Start();
-
-
             txbInfo.Text = "";
 
             var files = Directory.EnumerateFiles(@"C:\Users\PC\Desktop\bigfiles", "*.txt");
@@ -57,8 +53,50 @@ namespace WpfApp
 
             s.Stop();
             txbInfo.Text += $"\nElapsed milliseconds:\t{s.ElapsedMilliseconds}";
-            Mouse.OverrideCursor = null;
+            Mouse.OverrideCursor = null; //vratim se k normalni ikonce mysi
 
         }
+
+
+        private void btnParallel1_Click(object sender, RoutedEventArgs e)
+        {
+            Mouse.OverrideCursor = Cursors.Wait; //pridam si cekaci kolecko misto mysi
+            Stopwatch s = Stopwatch.StartNew();
+            txbInfo.Text = "";
+
+            var files = Directory.EnumerateFiles(@"C:\Users\PC\Desktop\bigfiles", "*.txt");
+
+            //kvůli předáni hodnoty z vlákna do vlákna gui
+            IProgress<string> progress = new Progress<string>(message =>
+            {
+                txbInfo.Text += message;
+            });
+
+            Parallel.ForEach(files, file =>
+            {
+                var result = FreqAnalysis.FreqAnalysisFromFile(file);
+
+                string message = "";
+
+                message += result.Source;
+                message += Environment.NewLine;
+
+                foreach (var word in result.GetTop10())
+                {
+                    message += $"{word.Key}\t{word.Value}{Environment.NewLine}";
+                }
+
+                message += "\n";
+                progress.Report(message);
+
+            });
+
+            s.Stop();
+            progress.Report($"\nElapsed milliseconds:\t{s.ElapsedMilliseconds}");
+            Mouse.OverrideCursor = null; //vratim se k normalni ikonce mysi
+
+        }
+
+        
     }
 }

@@ -11,10 +11,12 @@
             <RowDefinition Height="100"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Button x:Name="btnLoadFiles" FontSize="36" Grid.Row="0" Content="Načti soubory" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Click="btnLoadFiles_Click"/>
+        <Button x:Name="btnLoadFiles" FontSize="36" Grid.Row="0" Content="Sekvenčně" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Click="btnLoadFiles_Click"/>
+        <Button x:Name="btnParallel1" FontSize="36" Grid.Row="0" Content="Paralelně" HorizontalAlignment="Left" Margin="200,10,0,0" VerticalAlignment="Top" Click="btnParallel1_Click"/>
         <ScrollViewer Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="Beige">
             <TextBlock x:Name="txbInfo"  TextWrapping="Wrap" Text="TextBlock"  Margin="10" FontSize="14"/>
         </ScrollViewer>
+        
 
 
 
