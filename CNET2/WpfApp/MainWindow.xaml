@@ -11,12 +11,19 @@
             <RowDefinition Height="100"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Button x:Name="btnLoadFiles" FontSize="36" Grid.Row="0" Content="Sekvenčně" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Click="btnLoadFiles_Click"/>
-        <Button x:Name="btnParallel1" FontSize="36" Grid.Row="0" Content="Paralelně" HorizontalAlignment="Left" Margin="200,10,0,0" VerticalAlignment="Top" Click="btnParallel1_Click"/>
+        <Button x:Name="btnLoadFiles" FontSize="16" Grid.Row="0" Content="Sekvenčně" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Click="btnLoadFiles_Click"/>
+        <Button x:Name="btnParallel1" FontSize="16" Grid.Row="0" Content="Paralelně" HorizontalAlignment="Left" Margin="100,10,0,0" VerticalAlignment="Top" Click="btnParallel1_Click"/>
+
+        <Button x:Name="btnNetFirst" FontSize="16" Grid.Row="0" Content="Task first" HorizontalAlignment="Left" Margin="180,10,0,0" VerticalAlignment="Top" Click="btnNetFirst_Click" />
+        <Button x:Name="btnNetAll" FontSize="16" Grid.Row="0" Content="Task all" HorizontalAlignment="Left" Margin="260,10,0,0" VerticalAlignment="Top" Click="btnNetAll_Click" />
+
+        <Button x:Name="btnNetFirstWhen" FontSize="16" Grid.Row="0" Content="Task When any" HorizontalAlignment="Left" Margin="330,10,0,0" VerticalAlignment="Top" Click="btnNetFirstWhen_Click"  />
+        <Button x:Name="btnNetAllWhen" FontSize="16" Grid.Row="0" Content="Task When all" HorizontalAlignment="Left" Margin="460,10,0,0" VerticalAlignment="Top" Click="btnNetAllWhen_Click" />
+
         <ScrollViewer Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="Beige">
             <TextBlock x:Name="txbInfo"  TextWrapping="Wrap" Text="TextBlock"  Margin="10" FontSize="14"/>
         </ScrollViewer>
-        
+
 
 
 

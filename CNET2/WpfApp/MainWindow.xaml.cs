@@ -58,7 +58,7 @@ namespace WpfApp
         }
 
 
-        private void btnParallel1_Click(object sender, RoutedEventArgs e)
+        private async void btnParallel1_Click(object sender, RoutedEventArgs e)
         {
             Mouse.OverrideCursor = Cursors.Wait; //pridam si cekaci kolecko misto mysi
             Stopwatch s = Stopwatch.StartNew();
@@ -72,7 +72,27 @@ namespace WpfApp
                 txbInfo.Text += message;
             });
 
-            Parallel.ForEach(files, file =>
+            //Parallel.ForEach(files, file =>
+            //{
+            //    var result = FreqAnalysis.FreqAnalysisFromFile(file);
+
+            //    string message = "";
+
+            //    message += result.Source;
+            //    message += Environment.NewLine;
+
+            //    foreach (var word in result.GetTop10())
+            //    {
+            //        message += $"{word.Key}\t{word.Value}{Environment.NewLine}";
+            //    }
+
+            //    message += "\n";
+            //    progress.Report(message);
+
+            //});
+
+            //asynchronně
+            await Parallel.ForEachAsync(files, async (file, cancellationToken) =>
             {
                 var result = FreqAnalysis.FreqAnalysisFromFile(file);
 
@@ -97,6 +117,61 @@ namespace WpfApp
 
         }
 
-        
+        private void btnNetFirst_Click(object sender, RoutedEventArgs e)
+        {
+            Mouse.OverrideCursor = Cursors.Wait; //pridam si cekaci kolecko misto mysi
+            Stopwatch s = Stopwatch.StartNew();
+            txbInfo.Text = "";
+
+            string url1 = "https://seznam.cz";
+            string url2 = "https://seznamzpravy.cz";
+            string url3 = "https://ictpro.cz";
+
+            var t1 = Task.Run(() => WebLoader.LoadUrl(url1));
+            var t2 = Task.Run(() => WebLoader.LoadUrl(url2));
+            var t3 = Task.Run(() => WebLoader.LoadUrl(url3));
+
+            Task.WaitAny(t1,t2,t3);
+
+            txbInfo.Text += "Doběhl první task";
+
+            s.Stop();
+            txbInfo.Text += ($"\nElapsed milliseconds:\t{s.ElapsedMilliseconds}");
+            Mouse.OverrideCursor = null; //vratim se k normalni ikonce mysi
+
+        }
+
+        private void btnNetAll_Click(object sender, RoutedEventArgs e)
+        {
+            Mouse.OverrideCursor = Cursors.Wait; //pridam si cekaci kolecko misto mysi
+            Stopwatch s = Stopwatch.StartNew();
+            txbInfo.Text = "";
+
+            string url1 = "https://seznam.cz";
+            string url2 = "https://seznamzpravy.cz";
+            string url3 = "https://ictpro.cz";
+
+            var t1 = Task.Run(() => WebLoader.LoadUrl(url1));
+            var t2 = Task.Run(() => WebLoader.LoadUrl(url2));
+            var t3 = Task.Run(() => WebLoader.LoadUrl(url3));
+
+            Task.WaitAll(t1, t2, t3);
+
+            txbInfo.Text += "Doběhly všechny tasks";
+
+            s.Stop();
+            txbInfo.Text += ($"\nElapsed milliseconds:\t{s.ElapsedMilliseconds}");
+            Mouse.OverrideCursor = null; //vratim se k normalni ikonce mysi
+        }
+
+        private void btnNetFirstWhen_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnNetAllWhen_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
