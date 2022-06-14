@@ -192,6 +192,8 @@ namespace WpfApp
             Stopwatch s = Stopwatch.StartNew();
             txbInfo.Text = "";
 
+
+
             string url1 = "https://sezcnam.cz";
             string url2 = "https://seznamzpravy.cz";
             string url3 = "https://ictpro.cz";
@@ -202,6 +204,37 @@ namespace WpfApp
 
             var results = await Task.WhenAll(t1, t2, t3);
             txbInfo.Text += $"Doběhly všechny tasky, web lengthy jsou {string.Join(", ", results)}";
+
+            s.Stop();
+            txbInfo.Text += ($"\nElapsed milliseconds:\t{s.ElapsedMilliseconds}");
+            Mouse.OverrideCursor = null; //vratim se k normalni ikonce mysi
+        }
+
+        private async void btnNetAllWhenProgress_Click(object sender, RoutedEventArgs e)
+        {
+            Mouse.OverrideCursor = Cursors.Wait; //pridam si cekaci kolecko misto mysi
+            Stopwatch s = Stopwatch.StartNew();
+            txbInfo.Text = "";
+
+            IProgress<string> progress = new Progress<string>(message =>
+            {
+                txbInfo.Text += message + Environment.NewLine;
+            });
+
+            string[] urls = { "https://seznam.cz", "https://seznamzpravy.cz", "https://ictpro.cz", "https://lidovky.cz/", "https://google.com/", "https://novinky.cz/", "https://bbc.co.uk/" };
+
+            List<Task<(int?, string, bool)>> tasks = new List<Task<(int?, string, bool)>>();
+            
+            foreach (string url in urls)
+            {
+                tasks.Add(Task.Run(() => WebLoader.LoadUrl(url, progress)));
+            }
+
+            var results = await Task.WhenAll(tasks);
+
+            //txbInfo.Text += $"Doběhly všechny tasky, web lengthy jsou {string.Join(", ", results)}";
+
+
 
             s.Stop();
             txbInfo.Text += ($"\nElapsed milliseconds:\t{s.ElapsedMilliseconds}");
