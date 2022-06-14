@@ -200,7 +200,7 @@ namespace WpfApp
             var t2 = Task.Run(() => WebLoader.LoadUrl(url2));
             var t3 = Task.Run(() => WebLoader.LoadUrl(url3));
 
-            int[] results = await Task.WhenAll(t1, t2, t3);
+            var results = await Task.WhenAll(t1, t2, t3);
             txbInfo.Text += $"Doběhly všechny tasky, web lengthy jsou {string.Join(", ", results)}";
 
             s.Stop();

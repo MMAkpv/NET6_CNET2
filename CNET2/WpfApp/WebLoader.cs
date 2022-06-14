@@ -10,21 +10,21 @@ namespace WpfApp
 {
     public static class WebLoader
     {
-        public static int LoadUrl(string url)
+        public static (int Length, string Url, bool success) LoadUrl(string url)
         {
 
             try
             {
                 HttpClient httpClient = new HttpClient();
                 var content = httpClient.GetStringAsync(url).Result;
-                return content.Length;
+                return (content.Length, url, true);
             }
             catch (Exception e)
             {
                 //log
                 File.AppendAllText("errors.txt", $"{DateTime.Now}\t{e.Message}\n");
 
-                return -1;
+                return (-1,url,false);
             }
 
         }
