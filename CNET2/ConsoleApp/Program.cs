@@ -4,7 +4,12 @@ using System.Linq;
 
 Console.WriteLine("Hello, World!");
 
+#region 3denAPS
+var dataset = Data.Serialization.LoadFromXML();
 
+Console.WriteLine(dataset.Count());
+
+#endregion
 
 #region LINQ
 
@@ -78,24 +83,24 @@ Console.WriteLine("Hello, World!");
 #endregion
 
 #region Interface
-Client client1 = new Client() { Name = "Petr" };
-Client client2 = new Client() { Name = "Alena" };
-VIPClient client3 = new VIPClient() { Name = "Monika", Status = "GOLD" };
+//Client client1 = new Client() { Name = "Petr" };
+//Client client2 = new Client() { Name = "Alena" };
+//VIPClient client3 = new VIPClient() { Name = "Monika", Status = "GOLD" };
 
-List<IGreetable> clients = new List<IGreetable>();
-clients.Add(client1);
-clients.Add(client2);
-clients.Add(client3);
+//List<IGreetable> clients = new List<IGreetable>();
+//clients.Add(client1);
+//clients.Add(client2);
+//clients.Add(client3);
 
-foreach (var client in clients)
-{
-    Console.WriteLine(client.SayHello());
-}
+//foreach (var client in clients)
+//{
+//    Console.WriteLine(client.SayHello());
+//}
 
-static void GreetClient(IGreetable client)
-{
-    Console.WriteLine(client.SayHello());
-}
+//static void GreetClient(IGreetable client)
+//{
+//    Console.WriteLine(client.SayHello());
+//}
 
 #endregion
 
