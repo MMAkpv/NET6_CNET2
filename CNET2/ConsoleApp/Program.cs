@@ -46,11 +46,34 @@ Console.WriteLine(dataset.Count());
 //}
 
 //anonymni typ jako tuple
-var resTuple = dataset.Select(p => (Name: p.FullName, Age: p.Age() ));
+//var resTuple = dataset.Select(p => (Name: p.FullName, Age: p.Age() ));
 
-foreach (var item in resTuple)
+//foreach (var item in resTuple)
+//{
+//    Console.WriteLine(item.Name + " " + item.Age);
+//}
+
+
+//GROUPBY podle měst s počtem
+var datasetGroupByMesto = dataset.GroupBy(p => p.HomeAddress.City);
+
+//foreach (var item in datasetGroupByMesto)
+//{
+//    Console.WriteLine($"Město: {item.Key}\tPočet lidí: {item.Count()}");
+//}
+
+//vypsat lidi podle měst
+
+foreach (var item in datasetGroupByMesto)
 {
-    Console.WriteLine(item.Name + " " + item.Age);
+    Console.WriteLine(item.Key);
+
+    foreach (var kol in item)
+    {
+        Console.WriteLine(kol.LastName);
+    }
+    Console.WriteLine("------------");
+
 }
 
 
