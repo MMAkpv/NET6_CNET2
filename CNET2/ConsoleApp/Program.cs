@@ -4,10 +4,13 @@ using System.Linq;
 
 Console.WriteLine("Hello, World!");
 
-#region 3denAPS
-var dataset = Data.Serialization.LoadFromXML();
 
-Console.WriteLine(dataset.Count());
+
+
+#region 3denAPS
+//var dataset = Data.Serialization.LoadFromXML();
+
+//Console.WriteLine(dataset.Count());
 
 // kolik lidi ma nejakou smlouvu
 //var resultSmlouva = dataset.Where(p => p.Contracts.Any()).Count();
@@ -70,15 +73,23 @@ Console.WriteLine(dataset.Count());
 //Console.WriteLine(result.Count());
 
 //kdo s nami uzavrel posledni smlouvu
-Contract con = dataset.SelectMany(c => c.Contracts).OrderBy(c => c.Signed).Last();
 
-var per = dataset.Where(p => p.Contracts.Contains(con));
+//moje řešení, porovnávám cíle"pointerů", záleží na implementaci... v tomto případě funguje
+//Contract con = dataset.SelectMany(c => c.Contracts).OrderBy(c => c.Signed).Last();
 
-foreach (var item in per)
-{
-    Console.WriteLine(item.LastName);
-}
+//var per = dataset.Where(p => p.Contracts.Contains(con));
 
+//foreach (var item in per)
+//{
+//    Console.WriteLine(item.LastName);
+//}
+
+//řešení ostatních, seřadim lidi podle poslední smlouvy
+
+//var seSmlouvou = dataset.Where(p => p.Contracts.Any());
+
+//var result = seSmlouvou.OrderByDescending(p => p.Contracts.OrderByDescending(c => c.Signed).First().Signed).First();
+//Console.WriteLine(result.LastName);
 
 
 #endregion

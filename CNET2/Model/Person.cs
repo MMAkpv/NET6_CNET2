@@ -9,6 +9,7 @@ namespace Model
     public class Person
     {
         #region konstruktory
+        public int Id { get; set; }
         public Person(string firstName, string lastName)
         {
             FirstName = firstName;
