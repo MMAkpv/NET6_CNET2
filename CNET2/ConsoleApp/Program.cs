@@ -9,6 +9,51 @@ var dataset = Data.Serialization.LoadFromXML();
 
 Console.WriteLine(dataset.Count());
 
+// kolik lidi ma nejakou smlouvu
+//var resultSmlouva = dataset.Where(p => p.Contracts.Any()).Count();
+//Console.WriteLine(resultSmlouva);
+
+// kolik lidi je z Brna
+//var resultBrno = dataset.Count(p => p.HomeAddress.City == "Brno");
+//Console.WriteLine(resultBrno);
+
+// spocitejte a vypiste lidi z Brna
+
+//var resultBrnoCol = dataset.Where(p => p.HomeAddress.City == "Brno").ToList();
+//Console.WriteLine(resultBrnoCol.Count);
+
+//foreach (var item in resultBrnoCol)
+//{
+//    Console.WriteLine(item.FullName);
+//}
+
+//// nejstarší a nejmladší, jméno a věk
+
+//var serazenyDataset = dataset.OrderBy(p => p.DateOfBirth);
+//var nejstarsi = serazenyDataset.First();
+//var nejmladsti = serazenyDataset.Last();
+
+//Console.WriteLine(nejstarsi.LastName + " " + nejstarsi.Age());
+//Console.WriteLine(nejmladsti.LastName + " " + nejmladsti.Age());
+
+
+//anonymni typ
+//var result = dataset.Select(p => new { p.FullName, Age = p.Age() });
+
+//foreach (var item in result)
+//{
+//    Console.WriteLine(item.FullName + " " + item.Age);
+//}
+
+//anonymni typ jako tuple
+var resTuple = dataset.Select(p => (Name: p.FullName, Age: p.Age() ));
+
+foreach (var item in resTuple)
+{
+    Console.WriteLine(item.Name + " " + item.Age);
+}
+
+
 #endregion
 
 #region LINQ
