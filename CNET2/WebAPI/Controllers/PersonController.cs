@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Data;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Model;
 
@@ -8,12 +9,15 @@ namespace WebAPI.Controllers
     [ApiController]
     public class PersonController : ControllerBase
     {
+
+        
+
         [HttpGet("GetAll")]
         
-        public List<Person> GetPeople()
+        public IEnumerable<Person> GetPeople()
         {
-            var dataset = Data.Serialization.LoadFromXML();
-            return dataset;
+            var db = new PeopleContext();
+            return db.Persons;
         }
 
         //hledani osoby podle e-mailu
@@ -21,8 +25,8 @@ namespace WebAPI.Controllers
 
         public Person GetPersonByEmail(string email)
         {
-            var dataset = Data.Serialization.LoadFromXML();
-            return (dataset.Where(p => p.Email.ToLower() == email.ToLower()).FirstOrDefault());
+            var db = new PeopleContext();
+            return db.Persons.Where(p => p.Email.ToLower() == email.ToLower()).FirstOrDefault();
         }
     }
 }

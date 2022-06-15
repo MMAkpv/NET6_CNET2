@@ -4,8 +4,20 @@ using System.Linq;
 
 Console.WriteLine("Hello, World!");
 
+//naplnění datasetu a nastavení db
+var dataset = Data.Serialization.LoadFromXML();
 
+using var db = new PeopleContext();
 
+//načtení datasetu do db a uložení do db
+//db.Persons.AddRange(dataset);
+//db.SaveChanges();
+//Console.WriteLine("OK");
+
+//zjištění počtu záznamů v db:
+//Console.WriteLine("počet lidí:\t" + db.Persons.Count());
+//Console.WriteLine("počet adres:\t" + db.Addresses.Count());
+//Console.WriteLine("počet smluv:\t" + db.Contracts.Count());
 
 #region 3denAPS
 //var dataset = Data.Serialization.LoadFromXML();
