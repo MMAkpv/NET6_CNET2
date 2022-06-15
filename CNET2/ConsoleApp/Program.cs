@@ -55,7 +55,7 @@ Console.WriteLine(dataset.Count());
 
 
 //GROUPBY podle měst s počtem
-var datasetGroupByMesto = dataset.GroupBy(p => p.HomeAddress.City);
+//var datasetGroupByMesto = dataset.GroupBy(p => p.HomeAddress.City);
 
 //foreach (var item in datasetGroupByMesto)
 //{
@@ -64,17 +64,21 @@ var datasetGroupByMesto = dataset.GroupBy(p => p.HomeAddress.City);
 
 //vypsat lidi podle měst
 
-foreach (var item in datasetGroupByMesto)
+
+//select many (v některých jazycích flatten), ziskat vsechny smlouvy
+//var result = dataset.SelectMany(p => p.Contracts);
+//Console.WriteLine(result.Count());
+
+//kdo s nami uzavrel posledni smlouvu
+Contract con = dataset.SelectMany(c => c.Contracts).OrderBy(c => c.Signed).Last();
+
+var per = dataset.Where(p => p.Contracts.Contains(con));
+
+foreach (var item in per)
 {
-    Console.WriteLine(item.Key);
-
-    foreach (var kol in item)
-    {
-        Console.WriteLine(kol.LastName);
-    }
-    Console.WriteLine("------------");
-
+    Console.WriteLine(item.LastName);
 }
+
 
 
 #endregion
