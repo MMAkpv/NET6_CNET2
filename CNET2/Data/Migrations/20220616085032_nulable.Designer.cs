@@ -4,6 +4,7 @@ using Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(PeopleContext))]
-    partial class PeopleContextModelSnapshot : ModelSnapshot
+    [Migration("20220616085032_nulable")]
+    partial class nulable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -51,11 +53,21 @@ namespace Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CompId"), 1L, 1);
 
+                    b.Property<int>("AddressId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ContractId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("CompId");
+
+                    b.HasIndex("AddressId");
+
+                    b.HasIndex("ContractId");
 
                     b.ToTable("Companies");
                 });
@@ -67,9 +79,6 @@ namespace Data.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int?>("CompanyCompId")
-                        .HasColumnType("int");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
@@ -89,8 +98,6 @@ namespace Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CompanyCompId");
 
                     b.HasIndex("PersonId");
 
@@ -130,17 +137,28 @@ namespace Data.Migrations
                     b.ToTable("Persons");
                 });
 
+            modelBuilder.Entity("Model.Company", b =>
+                {
+                    b.HasOne("Model.Address", "Address")
+                        .WithMany()
+                        .HasForeignKey("AddressId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Model.Contract", "Contract")
+                        .WithMany()
+                        .HasForeignKey("ContractId");
+
+                    b.Navigation("Address");
+
+                    b.Navigation("Contract");
+                });
+
             modelBuilder.Entity("Model.Contract", b =>
                 {
-                    b.HasOne("Model.Company", "Company")
-                        .WithMany()
-                        .HasForeignKey("CompanyCompId");
-
                     b.HasOne("Model.Person", null)
                         .WithMany("Contracts")
                         .HasForeignKey("PersonId");
-
-                    b.Navigation("Company");
                 });
 
             modelBuilder.Entity("Model.Person", b =>

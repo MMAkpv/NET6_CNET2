@@ -1,4 +1,5 @@
 ﻿using Data;
+using Microsoft.EntityFrameworkCore;
 using Model;
 using System.Linq;
 
@@ -8,6 +9,12 @@ Console.WriteLine("Hello, World!");
 var dataset = Data.Serialization.LoadFromXML();
 
 using var db = new PeopleContext();
+
+//pridani jedné company do db...
+var p = db.Persons.Include(x =>x.Contracts).ThenInclude(x => x.Company).Where(x => x.Contracts.Any()).First();
+
+p.Contracts.First().Company = new Company() { Name = "Test Company" };
+db.SaveChanges();
 
 //načtení datasetu do db a uložení do db
 //db.Persons.AddRange(dataset);

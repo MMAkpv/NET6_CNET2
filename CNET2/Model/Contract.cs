@@ -16,5 +16,8 @@ namespace Model
         public DateTime Signed { get; set; }
 
         public bool IsActive { get; set; }
+        public Company? Company { get; set; }
     }
+
+    
 }
