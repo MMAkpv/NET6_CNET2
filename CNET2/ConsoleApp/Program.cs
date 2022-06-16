@@ -11,10 +11,30 @@ var dataset = Data.Serialization.LoadFromXML();
 using var db = new PeopleContext();
 
 //pridani jedné company do db...
-var p = db.Persons.Include(x =>x.Contracts).ThenInclude(x => x.Company).Where(x => x.Contracts.Any()).First();
+//var p = db.Persons.Include(x =>x.Contracts).ThenInclude(x => x.Company).Where(x => x.Contracts.Any()).First();
 
-p.Contracts.First().Company = new Company() { Name = "Test Company" };
-db.SaveChanges();
+//p.Contracts.First().Company = new Company() { Name = "Test Company" };
+//db.SaveChanges();
+
+//pridani companies tam kde jsou kontrakty
+//smazáni adresy co zůstala osamocena
+//var contract = db.Contracts.Include(x=>x.Company).First();
+//var company = contract.Company;
+//Console.WriteLine($"contract: {company.Name}");
+//contract.Company = null;
+//db.Companies.Remove(company);
+//db.SaveChanges();
+
+//var contracts = db.Contracts;
+
+//int i = 0;
+//foreach (var contract in contracts)
+//{
+//    var comp = new Company() { Name = $"Test company {i++}" };
+//    contract.Company = comp;
+//}
+//db.SaveChanges();
+
 
 //načtení datasetu do db a uložení do db
 //db.Persons.AddRange(dataset);
