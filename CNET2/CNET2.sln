@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Data", "Data\Data.csproj", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WpfApp", "WpfApp\WpfApp.csproj", "{3E551610-8C0A-4D70-8A17-5B1B61A09FB9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPI", "WebAPI\WebAPI.csproj", "{EE3C5130-BBDF-48A5-BFB3-6AD19CCF0DD5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAPI", "WebAPI\WebAPI.csproj", "{EE3C5130-BBDF-48A5-BFB3-6AD19CCF0DD5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorServerApp", "BlazorServerApp\BlazorServerApp.csproj", "{1B26656A-82F3-488B-BF52-3B4A40C801F8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{EE3C5130-BBDF-48A5-BFB3-6AD19CCF0DD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EE3C5130-BBDF-48A5-BFB3-6AD19CCF0DD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EE3C5130-BBDF-48A5-BFB3-6AD19CCF0DD5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B26656A-82F3-488B-BF52-3B4A40C801F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B26656A-82F3-488B-BF52-3B4A40C801F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B26656A-82F3-488B-BF52-3B4A40C801F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B26656A-82F3-488B-BF52-3B4A40C801F8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
