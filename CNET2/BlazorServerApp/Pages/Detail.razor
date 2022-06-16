@@ -1,7 +1,36 @@
-﻿@page "/Detail"
+﻿@page "/Detail/{id:int}"
+@inject PeopleContext db
+@using Microsoft.EntityFrameworkCore
+@using Model
+@using Data
 
 <h3>Person Detail</h3>
 
+<span>Osoba id: @id</span>
+
+<div>@Person.FullName</div>
+<div>@Person.Email</div>
+<div>@Person.HomeAddress.ToString()</div>
+<div>
+	<span>
+		Počet smluv: @Person.Contracts?.Count()
+	</span>
+</div>
+
 @code {
+
+	[Parameter]
+	public int id { get; set; }
+
+	public Person? Person { get; set; }
+
+	protected override void OnInitialized()
+	{
+		Person = db.Persons.Include(p => p.HomeAddress).Include(p => p.Contracts).Where(p => p.Id == id).FirstOrDefault();
+	}
+
+	
+
+
 
 }

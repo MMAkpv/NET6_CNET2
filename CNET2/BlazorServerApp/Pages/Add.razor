@@ -1,7 +1,57 @@
 ﻿@page "/Add"
+@inject PeopleContext db
+@using Microsoft.EntityFrameworkCore
+@using Model
+
 
 <h3>Add Person</h3>
 
+<div class="mb-3">
+  <label for="firstname" class="form-label">Jméno</label>
+  <input @bind-value=Person.FirstName type="text" class="form-control" id="firstname" placeholder="Jméno">
+</div>
+
+<div class="mb-3">
+  <label for="lastname" class="form-label">Příjmení</label>
+  <input @bind-value=Person.LastName type="text" class="form-control" id="lastname" placeholder="Příjmení">
+</div>
+
+<div class="mb-3">
+  <label for="email" class="form-label">E-mail</label>
+  <input @bind-value=Person.Email type="email" class="form-control" id="email" placeholder="e-mail">
+</div>
+
+<button class="btn btn-primary" @onclick=Save>Ulož</button>
+
+<div>@message</div>
+
 @code {
+
+	public Person Person { get; set; } = new Person();
+
+	string message = "";
+
+	void Save()
+	{
+
+
+		if(Person.Id > 0)
+		{
+			//edituji
+			db.SaveChanges();
+		}
+		else
+		{
+			//pridavam novou osobu
+			Person.HomeAddress = new Address() {City = "Plzeň", Street = "Tachovská"};
+			db.Persons.Add(Person);
+			db.SaveChanges();
+		}
+
+		message = $"hotovo {Person.Id} {DateTime.Now}";
+
+	}
+
+
 
 }
